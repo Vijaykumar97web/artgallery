@@ -14,7 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.*;
 
 @Service
-public class ArtJpaServcie implements ArtRepository {
+public class ArtJpaService implements ArtRepository {
     @Autowired
     private ArtJpaRepository artJpaRepository;
 

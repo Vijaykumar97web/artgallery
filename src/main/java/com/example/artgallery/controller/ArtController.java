@@ -1,6 +1,6 @@
 package com.example.artgallery.controller;
 
-import com.example.artgallery.service.ArtJpaServcie;
+import com.example.artgallery.service.ArtJpaService;
 import com.example.artgallery.model.Art;
 import com.example.artgallery.model.Artist;
 
@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 public class ArtController {
     @Autowired
-    private ArtJpaServcie artJpaService;
+    private ArtJpaService artJpaService;
 
     @GetMapping("/galleries/artists/arts")
     public ArrayList<Art> getArts() {

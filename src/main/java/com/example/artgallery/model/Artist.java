@@ -52,11 +52,11 @@ public class Artist {
         this.genre = genre;
     }
 
-    public List<Gallery> getGallerys() {
+    public List<Gallery> getGalleries() {
         return galleries;
     }
 
-    public void setGallerys(List<Gallery> galleries) {
+    public void setGalleries(List<Gallery> galleries) {
         this.galleries = galleries;
     }
 

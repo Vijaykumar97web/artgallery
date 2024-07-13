@@ -1,6 +1,5 @@
 package com.example.artgallery.service;
 
-
 import com.example.artgallery.model.*;
 import com.example.artgallery.repository.ArtistJpaRepository;
 import com.example.artgallery.repository.ArtJpaRepository;
@@ -44,14 +43,14 @@ public class ArtistJpaService implements ArtistRepository {
     @Override
     public Artist addArtist(Artist artist) {
         List<Integer> galleryIds = new ArrayList<>();
-        for (Gallery gallery : artist.getGallerys()) {
+        for (Gallery gallery : artist.getGalleries()) {
             galleryIds.add(gallery.getGalleryId());
         }
         List<Gallery> galleries = galleryJpaRepository.findAllById(galleryIds);
         if (galleries.size() != galleryIds.size()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        artist.setGallerys(galleries);
+        artist.setGalleries(galleries);
         return artistJpaRepository.save(artist);
     }
 
@@ -65,16 +64,16 @@ public class ArtistJpaService implements ArtistRepository {
             if (artist.getGenre() != null) {
                 newArtist.setGenre(artist.getGenre());
             }
-            if (artist.getGallerys() != null) {
+            if (artist.getGalleries() != null) {
                 List<Integer> galleryIds = new ArrayList<>();
-                for (Gallery gallery : artist.getGallerys()) {
+                for (Gallery gallery : artist.getGalleries()) {
                     galleryIds.add(gallery.getGalleryId());
                 }
                 List<Gallery> galleries = galleryJpaRepository.findAllById(galleryIds);
                 if (galleries.size() != galleryIds.size()) {
                     throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
                 }
-                newArtist.setGallerys(galleries);
+                newArtist.setGalleries(galleries);
             }
             return artistJpaRepository.save(newArtist);
         } catch (NoSuchElementException e) {
@@ -106,7 +105,7 @@ public class ArtistJpaService implements ArtistRepository {
     public List<Gallery> getArtistGallerys(int artistId) {
         try {
             Artist artist = artistJpaRepository.findById(artistId).get();
-            return artist.getGallerys();
+            return artist.getGalleries();
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }

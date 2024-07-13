@@ -1,6 +1,5 @@
 package com.example.artgallery.service;
 
-
 import com.example.artgallery.model.*;
 import com.example.artgallery.repository.GalleryJpaRepository;
 import com.example.artgallery.repository.GalleryRepository;
@@ -49,7 +48,7 @@ public class GalleryJpaService implements GalleryRepository {
         List<Artist> artists = artistJpaRepository.findAllById(artistIds);
         gallery.setArtists(artists);
         for (Artist artist : artists) {
-            artist.getGallerys().add(gallery);
+            artist.getGalleries().add(gallery);
         }
         Gallery savedgallery = galleryJpaRepository.save(gallery);
         artistJpaRepository.saveAll(artists);
@@ -73,7 +72,7 @@ public class GalleryJpaService implements GalleryRepository {
                 }
                 List<Artist> newArtists = artistJpaRepository.findAllById(newArtistIds);
                 for (Artist artist : newArtists) {
-                    artist.getGallerys().add(newGallery);
+                    artist.getGalleries().add(newGallery);
                 }
                 artistJpaRepository.saveAll(newArtists);
                 newGallery.setArtists(newArtists);
@@ -90,7 +89,7 @@ public class GalleryJpaService implements GalleryRepository {
             Gallery gallery = galleryJpaRepository.findById(galleryId).get();
             List<Artist> artists = gallery.getArtists();
             for (Artist artist : artists) {
-                artist.getGallerys().remove(gallery);
+                artist.getGalleries().remove(gallery);
             }
             artistJpaRepository.saveAll(artists);
             galleryJpaRepository.deleteById(galleryId);
